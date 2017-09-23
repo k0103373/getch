@@ -20,7 +20,7 @@
 
 </head>
 
-
+<body>
 	<header>
 		<h1>Getch</h1>
   </header>
@@ -33,6 +33,14 @@
             <div class="form-title-row">
                 <h1>추천된 사료는 다음과 같습니다</h1>
             </div>
+						<?php
+	$password = $_GET["password"];
+	if($password == "1111"){
+			echo "주인님 환영합니다";
+	} else {
+			echo "뉘신지?";
+	}
+ ?>
 
 
 
