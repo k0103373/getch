@@ -1,4 +1,8 @@
-
+<?php
+$conn = mysqli_connect("localhost:3306", "root", 123456);
+mysqli_select_db($conn, "test");
+$result = mysqli_query($conn, "SELECT * FROM table1");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,18 +16,23 @@
 
 	<link rel="stylesheet" href="assets/demo.css">
 	<link rel="stylesheet" href="assets/form-basic.css">
+	<style type="text/css">
+	 a:link { color: white; text-decoration: none;}
+	 a:visited { color: white; text-decoration: none;}
+	 a:hover { color: white; text-decoration: none;}
+	</style>
 
 </head>
 
-<body>
+
 	<header>
 		<h1>Getch</h1>
   </header>
 
+
     <div class="main-content">
 
-        <!-- <form class="form-basic" method="post" action="recommendation.php"> -->
-				<form class="form-basic" action="recommendation.php">
+        <form class="form-basic" method="post" action="#">
 
             <div class="form-title-row">
                 <h1>당신의 반려견에 대해 알려주세요</h1>
@@ -39,7 +48,7 @@
 						<div class="form-row">
 								<label>
 										<span>성별</span>
-										<select name="gender">
+										<select name="dropdown">
 												<option>수컷</option>
 												<option>암컷</option>
 										</select>
@@ -51,25 +60,25 @@
 								<div class="form-radio-buttons">
 										<div>
 												<label>
-														<input type="radio" name="age" value="1">
+														<input type="radio" name="radio">
 														<span>퍼피</span>
 												</label>
 										</div>
 										<div>
 												<label>
-														<input type="radio" name="age" value="2">
+														<input type="radio" name="radio">
 														<span>주니어</span>
 												</label>
 										</div>
 										<div>
 												<label>
-														<input type="radio" name="age" value="3">
+														<input type="radio" name="radio">
 														<span>어덜트</span>
 												</label>
 										</div>
 										<div>
 												<label>
-														<input type="radio" name="age" value="4">
+														<input type="radio" name="radio">
 														<span>시니어</span>
 												</label>
 										</div>
@@ -86,14 +95,14 @@
 						<div class="form-row">
 								<label>
 										<span>선호하는 고기</span>
-										<select name="ingredient">
-												<option value="1">상관없음</option>
-												<option value="2">닭고기</option>
-												<option value="3">오리고기</option>
-												<option value="4">연어</option>
-												<option value="5">소고기</option>
-												<option value="6">양고기</option>
-												<option value="7">칠면조고기</option>
+										<select name="dropdown">
+												<option>상관없음</option>
+												<option>닭고기</option>
+												<option>오리고기</option>
+												<option>연어</option>
+												<option>소고기</option>
+												<option>양고기</option>
+												<option>칠면조고기</option>
 										</select>
 								</label>
 						</div>
@@ -101,10 +110,10 @@
 						<div class="form-row">
 								<label>
 										<span>활동량</span>
-										<select name="active">
-												<option value="1">일반적이다</option>
-												<option value="2">활발한 편이다</option>
-												<option value="3">얌전한 편이다</option>
+										<select name="dropdown">
+												<option>일반적이다</option>
+												<option>활발한 편이다</option>
+												<option>얌전한 편이다</option>
 										</select>
 								</label>
 						</div>
@@ -112,9 +121,9 @@
 						<div class="form-row">
 								<label>
 										<span>중성화수술 여부</span>
-										<select name="neutralization">
-												<option value="1">중성화수술을 했다</option>
-												<option value="2">중성화수술을 하지 않았다</option>
+										<select name="dropdown">
+												<option>중성화수술을 했다</option>
+												<option>중성화수술을 하지 않았다</option>
 										</select>
 								</label>
 						</div>
@@ -124,19 +133,19 @@
 								<div class="form-radio-buttons">
 										<div>
 												<label>
-														<input type="radio" name="cost" value="1">
+														<input type="radio" name="radio">
 														<span>500원 이하</span>
 												</label>
 										</div>
 										<div>
 												<label>
-														<input type="radio" name="cost" value="2">
+														<input type="radio" name="radio">
 														<span>500원 ~ 1000원</span>
 												</label>
 										</div>
 										<div>
 												<label>
-														<input type="radio" name="cost" value="3">
+														<input type="radio" name="radio">
 														<span>1000원 이상</span>
 												</label>
 										</div>
@@ -146,12 +155,12 @@
 						<div class="form-row">
 								<label>
 										<span>기대효과</span>
-										<select name="note">
-												<option value="1">상관없음</option>
-												<option value="2">장에좋은</option>
-												<option value="3">기호성좋은</option>
-												<option value="4">체중조절</option>
-												<option value="5">영양식</option>
+										<select name="dropdown">
+												<option>상관없음</option>
+												<option>장에좋은</option>
+												<option>기호성좋은</option>
+												<option>체중조절</option>
+												<option>영양식</option>
 										</select>
 								</label>
 						</div>
@@ -165,7 +174,18 @@
 
 
             <div class="form-row">
-									<button type="submit">사료 추천 받기</button>
+									<button type="button" onclick="location.href='recommendation.html'">사료 추천 받기
+									<?php
+
+									
+
+
+
+
+									?>	
+
+
+									</button>
             </div>
         </form>
 

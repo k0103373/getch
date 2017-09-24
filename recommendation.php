@@ -1,3 +1,9 @@
+<?php
+$conn = mysqli_connect("localhost", "root", 123456);
+mysqli_select_db($conn, "test");
+$result = mysqli_query($conn, "SELECT * FROM table1");
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -39,6 +45,7 @@
 									echo "나이: ", $age;
 									echo "선호하는 고기: ", $ingredient;
 									echo "비용: ", $cost;
+
 							 	?>
 						</div>
 						<div class="form-row">
@@ -53,7 +60,11 @@
 									echo "중성화수술 여부: ", $neutral;
 								?>
 						</div>
-
+						<!-- 	<?php
+ $sql = "SELECT * FROM" ;
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+ ?> -->
 
         </form>
 
