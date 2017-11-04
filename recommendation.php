@@ -1,9 +1,20 @@
 <?php
-$conn = mysqli_connect("localhost", "root", 123456);
-mysqli_select_db($conn, "test");
-$result = mysqli_query($conn, "SELECT * FROM table1");
-?>
 
+$host = "localhost";
+$user = "root";
+$password = "123456";
+$DB_name = "test";
+
+$conn = mysqli_connect($host, $user, $password, $DB_name);
+
+if(mysqli_connect_errno($conn)){
+	echo "실패";
+}
+else{
+	echo "성공";
+
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +44,7 @@ $result = mysqli_query($conn, "SELECT * FROM table1");
         <form class="form-basic" method="get" action="#">
 
             <div class="form-title-row">
-                <h1>추천된 사료는 다음과 같습니다</h1>
+                <h1>추천된 사료는 다음과 같습니다111</h1>
             </div>
 						<div class="form-row">
 								<?php
@@ -41,6 +52,31 @@ $result = mysqli_query($conn, "SELECT * FROM table1");
 									$age = $_GET["age"];
 									$ingredient = $_GET["ingredient"];
 									$cost = $_GET["cost"];
+
+									if ($ingredient == 1)
+									{
+										$ingredient = "";
+									}
+									else if ($ingredient == 2)
+									{
+										$ingredient = "닭";
+									}
+									elseif ($ingredient == 3) {
+										$ingredient = "오리";
+									}
+									elseif ($ingredient == 4) {
+										$ingredient = "연어";
+									}
+									elseif ($ingredient == 5) {
+										$ingredient = "소고기";
+									}
+									elseif ($ingredient == 6) {
+										$ingredient = "양고기";
+									}
+									else
+									{
+										$age = "칠면조";
+									}
 									echo "이름: ", $name;
 									echo "나이: ", $age;
 									echo "선호하는 고기: ", $ingredient;
@@ -58,13 +94,35 @@ $result = mysqli_query($conn, "SELECT * FROM table1");
 									echo "기대효과: ", $note;
 									echo "활동량: ", $active;
 									echo "중성화수술 여부: ", $neutral;
-								?>
+							
+							?>
 						</div>
-						<!-- 	<?php
- $sql = "SELECT * FROM" ;
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
- ?> -->
+						
+
+						<?php
+if($age == 1)
+{
+ $sql = "SELECT * FROM `table 2` WHERE price <= 500 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+ }
+else if($age == 2)
+ {
+ $sql = "SELECT * FROM `table 2` WHERE price > 500 AND price <= 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+}
+else 
+{
+ $sql = "SELECT * FROM `table 2` WHERE price > 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+  }
+
+ $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_array($result);
+      $row1 = mysqli_fetch_row($result);
+      $row2 = mysqli_fetch_row($result);
+
+     echo "<img src='./img/",$row[0],".jpg' >",$row[2],"<br>";
+     echo "<img src='./img/",$row1[0],".jpg' >",$row1[2],"<br>";
+     echo "<img src='./img/",$row2[0],".jpg' >",$row2[2];
+
+	?>
 
         </form>
 
