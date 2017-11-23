@@ -12,7 +12,6 @@ if(mysqli_connect_errno($conn)){
 }
 else{
 	echo "성공";
-
 }
 ?>
 <!DOCTYPE html>
@@ -25,9 +24,11 @@ else{
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>GETCH</title>
-
+	<script src="assets/slideshow.js"> </script>
 	<link rel="stylesheet" href="assets/demo.css">
 	<link rel="stylesheet" href="assets/form-basic.css">
+	<link rel="stylesheet" href="assets/slideshow.css">
+
 
 </head>
 <body>
@@ -44,7 +45,7 @@ else{
         <form class="form-basic" method="get" action="#">
 
             <div class="form-title-row">
-                <h1>추천된 사료는 다음과 같습니다111</h1>
+                <h1>추천된 사료는 다음과 같습니다</h1>
             </div>
 						<div class="form-row">
 								<?php
@@ -77,11 +78,6 @@ else{
 									{
 										$age = "칠면조";
 									}
-									echo "이름: ", $name;
-									echo "나이: ", $age;
-									echo "선호하는 고기: ", $ingredient;
-									echo "비용: ", $cost;
-
 							 	?>
 						</div>
 						<div class="form-row">
@@ -90,39 +86,66 @@ else{
 									$weight = $_GET["weight"];
 									$active = $_GET["active"];
 									$neutral = $_GET["neutralization"];
-									echo "몸무게: ", $weight;
-									echo "기대효과: ", $note;
-									echo "활동량: ", $active;
-									echo "중성화수술 여부: ", $neutral;
-							
 							?>
 						</div>
-						
 
-						<?php
-if($age == 1)
-{
- $sql = "SELECT * FROM `table 1` WHERE price <= 500 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
- }
-else if($age == 2)
- {
- $sql = "SELECT * FROM `table 1` WHERE price > 500 AND price <= 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
-}
-else 
-{
- $sql = "SELECT * FROM `table 1` WHERE price > 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
-  }
 
- $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_array($result);
-      $row1 = mysqli_fetch_row($result);
-      $row2 = mysqli_fetch_row($result);
+		<?php
+			if($age == 1)
+			{
+			 $sql = "SELECT * FROM `table 1` WHERE price <= 500 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+			}
+			else if($age == 2)
+			{
+			 $sql = "SELECT * FROM `table 1` WHERE price > 500 AND price <= 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+			}
+			else
+			{
+			 $sql = "SELECT * FROM `table 1` WHERE price > 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+			}
 
-     echo "<img src='./img/",$row[0],".jpg' >",$row[2],"<br>";
-     echo "<img src='./img/",$row1[0],".jpg' >",$row1[2],"<br>";
-     echo "<img src='./img/",$row2[0],".jpg' >",$row2[2];
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_array($result);
+			$row1 = mysqli_fetch_row($result);
+			$row2 = mysqli_fetch_row($result);
+		?>
 
-	?>
+		<div class="slideshow-container">
+		  <div class="mySlides fade">
+		    <div class="numbertext">1 / 3</div>
+				<?php
+				echo "<img src='./img/",$row[0],".jpg' style='width:100%'><br>";
+				echo "<div class='text'>",$row[2],"</div>";
+				?>
+		  </div>
+
+		  <div class="mySlides fade">
+		    <div class="numbertext">2 / 3</div>
+				<?php
+				echo "<img src='./img/",$row1[0],".jpg' style='width:100%'><br>";
+				echo "<div class='text'>",$row1[2],"</div>";
+				?>
+		  </div>
+
+		  <div class="mySlides fade">
+		    <div class="numbertext">3 / 3</div>
+				<?php
+				echo "<img src='./img/",$row2[0],".jpg' style='width:100%'><br>";
+				echo "<div class='text'>",$row2[2],"</div>";
+				?>
+		  </div>
+
+			<script> plusSlides(0); </script>
+		  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+
+		<div style="text-align:center">
+		  <span class="dot" onclick="currentSlide(1)"></span>
+		  <span class="dot" onclick="currentSlide(2)"></span>
+		  <span class="dot" onclick="currentSlide(3)"></span>
+		</div>
 
         </form>
 
