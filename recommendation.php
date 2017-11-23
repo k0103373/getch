@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 
 $host = "localhost";
 $user = "root";
-$password = "123456";
-$DB_name = "test";
+$password = "kbkb6100";
+$DB_name = "csv_db";
 
 $conn = mysqli_connect($host, $user, $password, $DB_name);
 
@@ -102,15 +102,15 @@ else{
 						<?php
 if($age == 1)
 {
- $sql = "SELECT * FROM `table 2` WHERE price <= 500 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+ $sql = "SELECT * FROM `table 1` WHERE price <= 500 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
  }
 else if($age == 2)
  {
- $sql = "SELECT * FROM `table 2` WHERE price > 500 AND price <= 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+ $sql = "SELECT * FROM `table 1` WHERE price > 500 AND price <= 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
 }
 else 
 {
- $sql = "SELECT * FROM `table 2` WHERE price > 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
+ $sql = "SELECT * FROM `table 1` WHERE price > 1000 AND (ingredient1 like '%".$ingredient."%' OR  ingredient2 like '%".$ingredient."%' OR ingredient3 like '%".$ingredient."%') ORDER BY reputation DESC" ;
   }
 
  $result = mysqli_query($conn, $sql);
