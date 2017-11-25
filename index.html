@@ -9,8 +9,20 @@
 
 	<title>GETCH</title>
 
+
+
+	<script>
+		function submit_button_click() {
+			window.open("loading.html");
+			return false;
+		}
+	</script>
+
 	<link rel="stylesheet" href="assets/demo.css">
 	<link rel="stylesheet" href="assets/form-basic.css">
+
+
+
 
 </head>
 
@@ -20,8 +32,8 @@
   </header>
 
     <div class="main-content">
+			<div id="mask"></div>
 
-        <!-- <form class="form-basic" method="post" action="recommendation.php"> -->
 				<form class="form-basic" action="recommendation.php">
 
             <div class="form-title-row">
@@ -120,6 +132,8 @@
 
 						<div class="form-row">
 								<label><span>비용(100g당)</span></label>
+
+
 								<div class="form-radio-buttons">
 										<div>
 												<label>
@@ -164,8 +178,9 @@
 
 
             <div class="form-row">
-									<button type="submit">사료 추천 받기</button>
+									<button id="submit_button" onclick = "javascript: submit_button_click();">사료 추천 받기</button>
             </div>
+
         </form>
 
     </div>
