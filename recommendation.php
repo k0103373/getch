@@ -108,7 +108,31 @@ else{
 			$row = mysqli_fetch_array($result);
 			$row1 = mysqli_fetch_row($result);
 			$row2 = mysqli_fetch_row($result);
+
+			if($active == 2)
+			{
+				$active = 1.05;
+			}
+			else if ($active ==3)
+			{
+				$active = 0.94;
+			}
+			else
+			{
+				$active = 1;
+			}
+			if($neutral == 1)
+			{
+				$neutral = 0.94;
+			}
+			else
+			{
+				$neutral = 1;
+			}
+
+			$amount = ($weight*43.007+193.54)*$active*$neutral;
 		?>
+
 
 		<div class="slideshow-container">
 		  <div class="mySlides fade">
@@ -134,6 +158,9 @@ else{
 				echo "<div class='text'>",$row2[2],"</div>";
 				?>
 		  </div>
+			<p>
+
+
 
 			<script> plusSlides(0); </script>
 		  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -141,13 +168,23 @@ else{
 		</div>
 		<br>
 
+
 		<div style="text-align:center">
 		  <span class="dot" onclick="currentSlide(1)"></span>
 		  <span class="dot" onclick="currentSlide(2)"></span>
 		  <span class="dot" onclick="currentSlide(3)"></span>
 		</div>
 
-        </form>
+		<div style="text-align:center">
+			<br>
+			<?php
+				echo $name, "의 일일 권장 섭취량은 ", round($amount), "kcal예요.";
+			?>
+			</br>
+		</div>
+
+
+    </form>
 
     </div>
 
